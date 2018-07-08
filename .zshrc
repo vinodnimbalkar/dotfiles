@@ -95,3 +95,18 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias zshconfig="nano ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+###################
+# My customizations
+
+# aliases
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dss='dotfiles status -s'
+alias dco='dotfiles checkout'
+alias da='dotfiles add'
+alias dcam='dotfiles commit -am'
+alias ddpush='dotfiles push origin master'
+alias ddpull='dotfiles pull origin master'
+alias tt='cd ~/www/touts'
+alias gcm='git commit -m'
+alias grl='git rev-list --left-right --count'
