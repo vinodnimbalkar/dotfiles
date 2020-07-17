@@ -27,7 +27,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+ export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -63,6 +63,8 @@ plugins=(
   django
   python
   heroku
+  npm
+  emoji
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -93,20 +95,18 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="nano ~/.zshrc"
+alias zshconfig="vim ~/.zshrc"
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias emulator="/home/vinod/Android/Sdk/tools/emulator"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-###################
-# My customizations
+#Flutter Path
+export PATH=$PATH:$HOME/Applications/flutter/bin
+#increse heap size of node
+export NODE_OPTIONS=--max_old_space_size=4096
+#Deno Path
+export DENO_INSTALL="/home/vinod/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
 
-# aliases
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias dss='dotfiles status -s'
-alias dco='dotfiles checkout'
-alias da='dotfiles add'
-alias dcam='dotfiles commit -am'
-alias ddpush='dotfiles push origin master'
-alias ddpull='dotfiles pull origin master'
-alias tt='cd ~/www/touts'
-alias gcm='git commit -m'
-alias grl='git rev-list --left-right --count'
+#lightline status bar has no color hence adding term color
+export TERM=xterm-256color
