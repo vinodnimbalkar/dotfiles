@@ -44,7 +44,6 @@ Plug 'leafgarland/typescript-vim'                   " Typescript syntax files fo
 Plug 'sheerun/vim-polyglot'                         " Mega language support pack
 Plug 'mbbill/undotree'                              " The undo history visualizer for VIM
 Plug 'evanleck/vim-svelte'                          " Vim syntax highlighting and indentation for Svelte 3 components.
-Plug 'haishanh/night-owl.vim'                       " A 24bit dark Vim colorscheme based on sdras/night-owl-vscode-theme
 Plug 'itchyny/lightline.vim'                        " Awesome status bar
 Plug 'drewtempelmeyer/palenight.vim'                " Soothing color scheme for your favorite [best] text editor
 Plug 'mhinz/vim-startify'                           " Lovely, informative start screen
@@ -151,3 +150,6 @@ function! SetCursorPosition()
   endif
 endfunction
 
+" Debug feature
+let g:termdebug_popup = 0
+let g:termdebug_wide = 163
