@@ -69,7 +69,7 @@ local altkey       = "Mod1"
 local modkey1      = "Control"
 
 -- personal variables
-local browser           = "firefox"
+local browser           = "google-chrome"
 local editor            = os.getenv("EDITOR") or "vim"
 local editorgui         = "geany"
 local filemanager       = "thunar"
@@ -86,7 +86,7 @@ awful.util.tagnames = { " DEV ", " WWW ", " SYS ", " DOC ", " VBOX ", " CHAT ", 
 awful.layout.suit.tile.left.mirror = true
 awful.layout.layouts = {
     awful.layout.suit.tile,
-    awful.layout.suit.floating,
+    --awful.layout.suit.floating,
     --awful.layout.suit.tile.left,
     --awful.layout.suit.tile.bottom,
     --awful.layout.suit.tile.top,
@@ -94,9 +94,9 @@ awful.layout.layouts = {
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.spiral,
     --awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
+    --awful.layout.suit.max,
     --awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
+    --awful.layout.suit.magnifier,
     --awful.layout.suit.corner.nw,
     --awful.layout.suit.corner.ne,
     --awful.layout.suit.corner.sw,
@@ -213,7 +213,7 @@ globalkeys = my_table.join(
 
     -- {{{ Personal keybindings
     -- dmenu
-    awful.key({ modkey, "Shift" }, "Return",
+    awful.key({ modkey }, "space",
     function ()
         awful.spawn(string.format("dmenu_run",
         beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
@@ -235,7 +235,7 @@ globalkeys = my_table.join(
     -- My applications (Super+Alt+Key)
     awful.key({ modkey, altkey }, "a", function () awful.util.spawn( terminal.." -e ncpamixer" ) end,
         {description = "ncpamixer" , group = "terminal apps" }),
-    awful.key({ modkey, altkey }, "b", function () awful.util.spawn( "chrome www.dev.to" ) end,
+    awful.key({ modkey, altkey }, "b", function () awful.util.spawn( "google-chrome www.dev.to" ) end,
         {description = "surf web browser" , group = "gui apps" }),
     awful.key({ modkey, altkey  }, "c", function () awful.util.spawn( terminal.." -e cmus" ) end,
         {description = "cmus" , group = "terminal apps" }),
@@ -701,11 +701,8 @@ awful.rules.rules = {
     { rule = { class = "Vlc" },
           properties = { maximized = true } },
 
-    { rule = { class = "VirtualBox Manager" },
-          properties = { maximized = true } },
-
-    { rule = { class = "VirtualBox Machine" },
-          properties = { maximized = true } },
+    { rule = { class = "x-terminal-emulator" },
+          properties = { opacity = 0.75 } },
 
     { rule = { class = "Xfce4-settings-manager" },
           properties = { floating = false } },
@@ -833,7 +830,7 @@ client.connect_signal("focus", border_adjust)
 client.connect_signal("property::maximized", border_adjust)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
-awful.spawn.with_shell("nitrogen --restore")
-awful.spawn.with_shell("picom --config  $HOME/.config/picom/picom.conf")
+awful.spawn.with_shell("nitrogen --set-zoom-fill --random ~/Pictures/Wallpapers --save")
+awful.spawn.with_shell("compton")
 awful.spawn.with_shell("nm-applet")
 awful.spawn.with_shell("volumeicon")
