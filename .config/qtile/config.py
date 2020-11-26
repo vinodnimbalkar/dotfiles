@@ -42,6 +42,8 @@ keys = [
     # Switch between windows in current stack pane
     Key([mod], "k", lazy.layout.down(), desc="Move focus down in stack pane"),
     Key([mod], "j", lazy.layout.up(), desc="Move focus up in stack pane"),
+    Key([mod], "h", lazy.layout.left(), desc="Move focus left in stack pane"),
+    Key([mod], "l", lazy.layout.right(), desc="Move focus left in stack pane"),
     # Move windows up or down in current stack
     Key(
         [mod, "control"],
@@ -57,14 +59,14 @@ keys = [
     ),
     Key(
         [mod],
-        "h",
+        "Up",
         lazy.layout.grow(),
         lazy.layout.increase_nmaster(),
         desc="Expand window (MonadTall), increase number in master pane (Tile)",
     ),
     Key(
         [mod],
-        "l",
+        "Down",
         lazy.layout.shrink(),
         lazy.layout.decrease_nmaster(),
         desc="Shrink window (MonadTall), decrease number in master pane (Tile)",
@@ -84,7 +86,7 @@ keys = [
     Key(
         [mod],
         "space",
-        lazy.layout.next(),
+        lazy.layout.flip(),
         desc="Switch window focus to other pane(s) of stack",
     ),
     # Swap panes of split stack
@@ -116,11 +118,23 @@ keys = [
         lazy.spawn("bash /home/vinod/.dmenu/dmenu-edit-configs.sh"),
         desc="Dmenu script for editing config files",
     ),
+    Key([mod], "s", lazy.spawn("gnome-control-center"), desc="Open Gnome Setting"),
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+
+    # Brightness
+    Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 5")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 5")),
+
+    # Volume
+    Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn(
+        "amixer -q set Master 5%-")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn(
+        "amixer -q set Master 5%+")),
     # My applications launched with SUPER + ALT + KEY
     Key(
         [mod, "mod1"],
@@ -416,7 +430,7 @@ focus_on_window_activation = "smart"
 @hook.subscribe.startup_once
 def start_once():
     home = os.path.expanduser("~")
-    subprocess.call([home + "./.config/qtile/autostart.sh"])
+    subprocess.call([home + "/.config/qtile/autostart.sh"])
 
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
