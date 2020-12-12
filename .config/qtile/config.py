@@ -39,49 +39,25 @@ mod = "mod4"
 terminal = guess_terminal()
 
 keys = [
-    # Switch between windows in current stack pane
+    # Move between windows
     Key([mod], "k", lazy.layout.down(), desc="Move focus down in stack pane"),
     Key([mod], "j", lazy.layout.up(), desc="Move focus up in stack pane"),
     Key([mod], "h", lazy.layout.left(), desc="Move focus left in stack pane"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus left in stack pane"),
-    # Move windows up or down in current stack
-    Key(
-        [mod, "control"],
-        "k",
-        lazy.layout.shuffle_down(),
-        desc="Move window down in current stack ",
-    ),
-    Key(
-        [mod, "control"],
-        "j",
-        lazy.layout.shuffle_up(),
-        desc="Move window up in current stack ",
-    ),
-    Key(
-        [mod],
-        "Up",
-        lazy.layout.grow(),
-        lazy.layout.increase_nmaster(),
-        desc="Expand window (MonadTall), increase number in master pane (Tile)",
-    ),
-    Key(
-        [mod],
-        "Down",
-        lazy.layout.shrink(),
-        lazy.layout.decrease_nmaster(),
-        desc="Shrink window (MonadTall), decrease number in master pane (Tile)",
-    ),
-    Key([mod], "n", lazy.layout.normalize(),
-        desc="normalize window size ratios"),
-    Key(
-        [mod],
-        "m",
-        lazy.layout.maximize(),
-        desc="toggle window between minimum and maximum sizes",
-    ),
-    Key([mod, "shift"], "f", lazy.window.toggle_floating(), desc="toggle floating"),
-    Key([mod, "shift"], "m", lazy.window.toggle_fullscreen(),
-        desc="toggle fullscreen"),
+    # shufle windows
+    Key([mod, "control"], "j", lazy.layout.shuffle_down()),
+    Key([mod, "control"], "k", lazy.layout.shuffle_up()),
+    Key([mod, "control"], "h", lazy.layout.shuffle_left()),
+    Key([mod, "control"], "l", lazy.layout.shuffle_right()),
+    # resize windows
+    Key([mod, "shift"], "h", lazy.layout.shrink()),
+    Key([mod, "shift"], "l", lazy.layout.grow()),
+    Key([mod, "shift"], "m", lazy.layout.maximize()),
+    Key([mod, "shift"], "n", lazy.layout.normalize()),
+    # layout modifires
+    Key([mod, "shift"], "t", lazy.window.toggle_floating()),
+    Key([mod, "shift"], "f", lazy.window.toggle_fullscreen()),
+    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     # Switch window focus to other pane(s) of stack
     Key(
         [mod],
@@ -119,37 +95,26 @@ keys = [
         desc="Dmenu script for editing config files",
     ),
     Key([mod], "s", lazy.spawn("gnome-control-center"), desc="Open Gnome Setting"),
-    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
     # Brightness
-    Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 5")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 5")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc +5")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec +5")),
 
     # Volume
-    Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
+    Key([], "XF86AudioMute", lazy.spawn("pulsemixer --toggle-mute")),
     Key([], "XF86AudioLowerVolume", lazy.spawn(
-        "amixer -q set Master 5%-")),
+        "pulsemixer --change-volume -5")),
     Key([], "XF86AudioRaiseVolume", lazy.spawn(
-        "amixer -q set Master 5%+")),
+        "pulsemixer --change-volume +5")),
+
     # My applications launched with SUPER + ALT + KEY
-    Key(
-        [mod, "mod1"],
-        "b",
-        lazy.spawn("qutebrowser http://google.co.in"),
-        desc="qute browser",
-    ),
-    Key([mod, "mod1"], "n", lazy.spawn(
-        terminal + " -e newsboat"), desc="newsboat"),
-    Key(
-        [mod, "mod1"],
-        "r",
-        lazy.spawn(terminal + " -e rtv"),
-        desc="reddit terminal viewer",
-    ),
+    Key([mod, "mod1"], "b", lazy.spawn("google-chrome")),
+    Key([mod, "mod1"], "n", lazy.spawn(terminal + " -e newsboat")),
+    Key([mod, "mod1"], "r", lazy.spawn(terminal + " -e rtv")),
     Key([mod, "mod1"], "c", lazy.spawn(terminal + " -e cmus"), desc="cmus"),
 ]
 
@@ -207,7 +172,18 @@ colors = [
     ["#8d62a9", "#8d62a9"],  # border line color for other tab and odd widgets
     ["#668bd7", "#668bd7"],  # color for the even widgets
     ["#e1acff", "#e1acff"],
-]  # window name
+]
+# bar color
+bar_colors = [
+    "#282a36",  # black
+    "#ff5555",  # red
+    "#5af78e",  # green
+    "#f1fa8c",  # yellow
+    "#57c7ff",  # blue
+    "#ff6ac1",  # magenta
+    "#8be9fd",  # cyan
+    "#f1f1f0",  # white
+]
 
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
@@ -257,54 +233,124 @@ def init_widgets_list():
                    foreground=colors[2], background=colors[0]),
         widget.WindowName(
             foreground=colors[6], background=colors[0], padding=0),
-        widget.TextBox(
-            text="", background=colors[4], foreground=colors[5], padding=0, fontsize=20
+        widget.Image(
+            filename="~/.config/qtile/icons/cpu.png",
+            background=bar_colors[5],
+            margin=2,
+            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(
+                terminal + " -e htop")},
         ),
-        widget.TextBox(
-            text=" 🌡",
-            padding=2,
-            foreground=colors[2],
-            background=colors[5],
-            fontsize=11,
+        widget.CPU(
+            format="CPU {freq_current}GHz {load_percent}%",
+            update_interval=5,
+            foreground=bar_colors[0],
+            background=bar_colors[5],
+            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(
+                terminal + " -e htop")},
         ),
         widget.ThermalSensor(
-            foreground=colors[2], background=colors[5], threshold=90, padding=5
+            background=bar_colors[5], foreground=bar_colors[0], update_interval=5,),
+        widget.Sep(
+            linewidth=4,
+            foreground=bar_colors[0],
+            background=bar_colors[0],
+            size_percent=100,
         ),
-        widget.TextBox(
-            text="", background=colors[5], foreground=colors[4], padding=0, fontsize=20
-        ),
-        widget.TextBox(
-            text="", background=colors[4], foreground=colors[5], padding=0, fontsize=20
-        ),
-        widget.TextBox(
-            text=" 🖬",
-            foreground=colors[2],
-            background=colors[5],
-            padding=0,
-            fontsize=14,
+        widget.Image(
+            filename="~/.config/qtile/icons/memory.png",
+            background=bar_colors[3],
+            margin=1,
+            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(
+                terminal + " -e htop")},
         ),
         widget.Memory(
-            foreground=colors[2],
-            background=colors[5],
-            format="{MemUsed}M",
-            mouse_callbacks={
-                "Button1": lambda qtile: qtile.cmd_spawn(terminal + " -e htop")
-            },
-            padding=5,
+            format="Mem {MemUsed}MB ",
+            foreground=bar_colors[0],
+            background=bar_colors[3],
+            update_interval=5,
+            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(
+                terminal + " -e htop")},
         ),
-        widget.TextBox(
-            text="", background=colors[5], foreground=colors[4], padding=0, fontsize=20
+        # widget.Sep(
+        #     linewidth=4,
+        #     foreground=bar_colors[0],
+        #     background=bar_colors[0],
+        #     size_percent=100,
+        # ),
+        # widget.Image(
+        #     filename="~/.config/qtile/icons/wifi.png",
+        #     background=bar_colors[4],
+        #     margin=3,
+        # ),
+        # widget.Wlan(
+        #     interface="wlp0s20f3",
+        #     format="{essid}",
+        #     disconnected_message="",
+        #     foreground=bar_colors[0],
+        #     background=bar_colors[4],
+        # ),
+        # widget.Net(
+        #     format="{interface}",
+        #     interface="enp0s20f0u1",
+        #     foreground=bar_colors[0],
+        #     background=bar_colors[4],
+        # ),
+        widget.Sep(
+            linewidth=4,
+            foreground=bar_colors[0],
+            background=bar_colors[0],
+            size_percent=100,
+        ),
+        widget.Image(
+            filename="~/.config/qtile/icons/battery.png",
+            background=bar_colors[2],
+            margin=1,
         ),
         widget.Battery(
-            foreground=colors[2],
-            background=colors[5],
-            charge_char="⚡", discharge_char="🔋",
-            full_char="⚡", unknown_char="⚡",
-            empty_char="⁉️ ", update_interval=2,
-            format='{char} {percent:2.0%}'
+            charge_char="AC",
+            discharge_char="",
+            low_foreground=bar_colors[1],
+            low_percentage=0.2,
+            format="{char} {percent:2.0%} ({hour:d}:{min:02d})",
+            update_interval=30,
+            background=bar_colors[2],
+            foreground=bar_colors[0],
         ),
-        widget.TextBox(
-            text="", background=colors[5], foreground=colors[4], padding=0, fontsize=20
+        widget.Sep(
+            linewidth=4,
+            foreground=bar_colors[0],
+            background=bar_colors[0],
+            size_percent=100,
+        ),
+        widget.Image(
+            filename="~/.config/qtile/icons/brightness.png",
+            background=bar_colors[3],
+            margin=2,
+        ),
+        widget.Backlight(
+            backlight_name="intel_backlight",
+            format="{percent:2.0%}",
+            foreground=bar_colors[0],
+            background=bar_colors[3],
+            step=1,
+        ),
+        widget.Sep(
+            linewidth=4,
+            foreground=bar_colors[0],
+            background=bar_colors[0],
+            size_percent=100,
+        ),
+        widget.Image(
+            filename="~/.config/qtile/icons/vol.png",
+            background=bar_colors[3],
+            margin=4,
+        ),
+        widget.Volume(foreground=bar_colors[0], background=bar_colors[3]),
+        widget.Sep(
+            linewidth=4,
+            foreground=bar_colors[0],
+            background=bar_colors[0],
+            size_percent=100,
         ),
         widget.CurrentLayoutIcon(
             custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
@@ -315,14 +361,20 @@ def init_widgets_list():
         ),
         widget.CurrentLayout(
             foreground=colors[2], background=colors[4], padding=5),
-        widget.TextBox(
-            text="", background=colors[4], foreground=colors[5], padding=0, fontsize=20
+        widget.Sep(
+            linewidth=4,
+            foreground=bar_colors[0],
+            background=bar_colors[0],
+            size_percent=100,
+        ),
+        widget.Image(
+            filename="~/.config/qtile/icons/calendar.png",
+            background=bar_colors[6],
+            margin=4,
         ),
         widget.Clock(
-            foreground=colors[2], background=colors[5], format="⏱ %a, %b %d - %H:%M"
+            foreground=bar_colors[0], background=bar_colors[6], format="%a, %b %d - %H:%M"
         ),
-        widget.Sep(linewidth=0, padding=10,
-                   foreground=colors[0], background=colors[5]),
         widget.Systray(background=colors[0], padding=5),
     ]
     return widgets_list
