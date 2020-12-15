@@ -250,12 +250,6 @@ def init_widgets_list():
         ),
         widget.ThermalSensor(
             background=bar_colors[5], foreground=bar_colors[0], update_interval=5,),
-        widget.Sep(
-            linewidth=4,
-            foreground=bar_colors[0],
-            background=bar_colors[0],
-            size_percent=100,
-        ),
         widget.Image(
             filename="~/.config/qtile/icons/memory.png",
             background=bar_colors[3],
@@ -271,35 +265,23 @@ def init_widgets_list():
             mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(
                 terminal + " -e htop")},
         ),
-        # widget.Sep(
-        #     linewidth=4,
-        #     foreground=bar_colors[0],
-        #     background=bar_colors[0],
-        #     size_percent=100,
-        # ),
-        # widget.Image(
-        #     filename="~/.config/qtile/icons/wifi.png",
-        #     background=bar_colors[4],
-        #     margin=3,
-        # ),
-        # widget.Wlan(
-        #     interface="wlp0s20f3",
-        #     format="{essid}",
-        #     disconnected_message="",
-        #     foreground=bar_colors[0],
-        #     background=bar_colors[4],
-        # ),
-        # widget.Net(
-        #     format="{interface}",
-        #     interface="enp0s20f0u1",
-        #     foreground=bar_colors[0],
-        #     background=bar_colors[4],
-        # ),
-        widget.Sep(
-            linewidth=4,
+        widget.Image(
+            filename="~/.config/qtile/icons/wifi.png",
+            background=bar_colors[4],
+            margin=3,
+        ),
+        widget.Wlan(
+            interface="wlp2s0",
+            format="{essid}",
+            disconnected_message="",
             foreground=bar_colors[0],
-            background=bar_colors[0],
-            size_percent=100,
+            background=bar_colors[4],
+        ),
+        widget.Net(
+            format="{interface}",
+            interface="enp0s20f0u1",
+            foreground=bar_colors[0],
+            background=bar_colors[4],
         ),
         widget.Image(
             filename="~/.config/qtile/icons/battery.png",
@@ -316,12 +298,6 @@ def init_widgets_list():
             background=bar_colors[2],
             foreground=bar_colors[0],
         ),
-        widget.Sep(
-            linewidth=4,
-            foreground=bar_colors[0],
-            background=bar_colors[0],
-            size_percent=100,
-        ),
         widget.Image(
             filename="~/.config/qtile/icons/brightness.png",
             background=bar_colors[3],
@@ -334,24 +310,12 @@ def init_widgets_list():
             background=bar_colors[3],
             step=1,
         ),
-        widget.Sep(
-            linewidth=4,
-            foreground=bar_colors[0],
-            background=bar_colors[0],
-            size_percent=100,
-        ),
         widget.Image(
             filename="~/.config/qtile/icons/vol.png",
             background=bar_colors[3],
             margin=4,
         ),
         widget.Volume(foreground=bar_colors[0], background=bar_colors[3]),
-        widget.Sep(
-            linewidth=4,
-            foreground=bar_colors[0],
-            background=bar_colors[0],
-            size_percent=100,
-        ),
         widget.CurrentLayoutIcon(
             custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
             foreground=colors[0],
@@ -361,12 +325,6 @@ def init_widgets_list():
         ),
         widget.CurrentLayout(
             foreground=colors[2], background=colors[4], padding=5),
-        widget.Sep(
-            linewidth=4,
-            foreground=bar_colors[0],
-            background=bar_colors[0],
-            size_percent=100,
-        ),
         widget.Image(
             filename="~/.config/qtile/icons/calendar.png",
             background=bar_colors[6],
@@ -448,15 +406,15 @@ mouse = [
         [mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
     ),
     Click([mod], "Button2", lazy.window.bring_to_front()),
-]
 
-dgroups_key_binder = None
-dgroups_app_rules = []  # type: List
-main = None  # WARNING: this is deprecated and will be removed soon
-follow_mouse_focus = True
-bring_front_click = False
-cursor_warp = False
-floating_layout = layout.Floating(
+
+dgroups_key_binder= None
+dgroups_app_rules= []  # type: List
+main= None  # WARNING: this is deprecated and will be removed soon
+follow_mouse_focus= True
+bring_front_click= False
+cursor_warp= False
+floating_layout= layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         {"wmclass": "confirm"},
@@ -475,13 +433,13 @@ floating_layout = layout.Floating(
         {"wmclass": "ssh-askpass"},  # ssh-askpass
     ]
 )
-auto_fullscreen = True
-focus_on_window_activation = "smart"
+auto_fullscreen= True
+focus_on_window_activation= "smart"
 
 
-@hook.subscribe.startup_once
+@ hook.subscribe.startup_once
 def start_once():
-    home = os.path.expanduser("~")
+    home= os.path.expanduser("~")
     subprocess.call([home + "/.config/qtile/autostart.sh"])
 
 
@@ -493,4 +451,4 @@ def start_once():
 #
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
-wmname = "LG3D"
+wmname= "LG3D"
