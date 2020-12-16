@@ -1,6 +1,6 @@
 " NERDTree Settings
 map <Leader>f :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Enforcing Purity for myself to not use arrow keys
 noremap <Up>    <Nop>
@@ -25,5 +25,4 @@ noremap <C-l> <C-w>l
 " ftz key bindings
 nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
-
 
