@@ -406,15 +406,15 @@ mouse = [
         [mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
     ),
     Click([mod], "Button2", lazy.window.bring_to_front()),
+]
 
-
-dgroups_key_binder= None
-dgroups_app_rules= []  # type: List
-main= None  # WARNING: this is deprecated and will be removed soon
-follow_mouse_focus= True
-bring_front_click= False
-cursor_warp= False
-floating_layout= layout.Floating(
+dgroups_key_binder = None
+dgroups_app_rules = []  # type: List
+main = None  # WARNING: this is deprecated and will be removed soon
+follow_mouse_focus = True
+bring_front_click = False
+cursor_warp = False
+floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         {"wmclass": "confirm"},
@@ -433,13 +433,13 @@ floating_layout= layout.Floating(
         {"wmclass": "ssh-askpass"},  # ssh-askpass
     ]
 )
-auto_fullscreen= True
-focus_on_window_activation= "smart"
+auto_fullscreen = True
+focus_on_window_activation = "smart"
 
 
 @ hook.subscribe.startup_once
 def start_once():
-    home= os.path.expanduser("~")
+    home = os.path.expanduser("~")
     subprocess.call([home + "/.config/qtile/autostart.sh"])
 
 
@@ -451,4 +451,4 @@ def start_once():
 #
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
-wmname= "LG3D"
+wmname = "LG3D"
