@@ -10,9 +10,25 @@
 ```
 # dotfiles
 
+## Used Applications
+- **Distro:** Ubuntu 20.04 LTS
+- **Window Manager:** Qtile 
+- **Shell:** zsh (+oh\_my\_zsh)
+- **Terminal:** Alacritty
+- **Text Editor:** Neovim/Vim | VS Code
+- **Menus:** Dmenu
+- **File Manager:** Vifm
+- **Audio Player:** cmus
+- **System Monitoring Dashboard:** htop
+- **compositor:** Compton
+
+## Wallpaper
+I got them from a collection of [Derek Taylor](https://gitlab.com/dwt1/wallpapers),
+
 ## Clone these dotfiles into a new computer
 
-clone your github repository
+I manage my dotfiles with a bare git repository and would encourage you to do the same. [How to?](https://www.atlassian.com/git/tutorials/dotfiles)
+clone this github repository
 
 ```
 git clone --bare https://github.com/vinodnimbalkar/dotfiles.git $HOME/.dotfiles
