@@ -1,5 +1,8 @@
+" NeoVim Config
+nmap <leader>, :e ~/.config/nvim/init.vim<CR>
+
 " NERDTree Settings
-map <Leader>f :NERDTreeToggle<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Enforcing Purity for myself to not use arrow keys
@@ -30,3 +33,8 @@ nnoremap <Leader>pf :Files<CR>
 nmap <C-Right> :bn<CR>  " Next buffer in list
 nmap <C-Left> :bp<CR>  " Previous buffer in list
 nmap <C-S-Left> :b#<CR>  " Previous buffer you were in
+
+" Vim-Visual-Multi changing default to Ctrl+d like VSCode
+let g:VM_maps = {}
+let g:VM_maps['Find Under']         = '<C-d>'           " replace C-n
+let g:VM_maps['Find Subword Under'] = '<C-d>'           " replace visual C-n

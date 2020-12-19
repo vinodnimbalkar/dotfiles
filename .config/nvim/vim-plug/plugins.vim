@@ -26,5 +26,11 @@ Plug 'ryanoasis/vim-devicons'                       " File icons
 Plug 'neoclide/coc.nvim', {'branch': 'release'}     " Intellisense engine for Vim
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fzf love vim
 Plug 'junegunn/fzf.vim'                             " Fuzzy search for vim
+Plug 'voldikss/vim-floaterm'                        " Use nvim/vim's builtin terminal in the floating/popup window
+Plug 'liuchengxu/vim-which-key'                     " Vim plugin that shows keybindings in popup
+Plug 'junegunn/goyo.vim'                            " Distraction-free writing in Vim
+Plug 'airblade/vim-gitgutter'                       " A Vim plugin which shows git diff markers in the sign column
+Plug 'mg979/vim-visual-multi', {'branch': 'master'} " Multiple cursors plugin for vim/neovim
+Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && npm install'} "markdown preview plugin for (neo)vim
 
 call plug#end()

@@ -4,4 +4,6 @@ source $HOME/.config/nvim/general/functions.vim
 source $HOME/.config/nvim/keys/mappings.vim
 source $HOME/.config/nvim/themes/palenight.vim
 source $HOME/.config/nvim/plug-config/coc.vim
+source $HOME/.config/nvim/plug-config/floaterm.vim
 source $HOME/.config/nvim/themes/airline.vim
+source $HOME/.config/nvim/keys/which-key.vim
