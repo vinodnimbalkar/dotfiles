@@ -32,5 +32,6 @@ Plug 'junegunn/goyo.vim'                            " Distraction-free writing i
 Plug 'airblade/vim-gitgutter'                       " A Vim plugin which shows git diff markers in the sign column
 Plug 'mg979/vim-visual-multi', {'branch': 'master'} " Multiple cursors plugin for vim/neovim
 Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && npm install'} "markdown preview plugin for (neo)vim
+Plug 'kaicataldo/material.vim', { 'branch': 'main' } "A port of the Material color scheme for Vim/Neovim
 
 call plug#end()

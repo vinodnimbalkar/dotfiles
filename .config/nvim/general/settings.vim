@@ -30,4 +30,9 @@ set undodir=~/.vim/undodir
 set undofile
 
 highlight ColorColumn ctermbg=0 guibg=lightgrey
+" Uncomment below two line for Transparent Neovim
+" hi Normal ctermbg=NONE guibg=NONE
+" hi NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
+
+
 
