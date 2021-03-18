@@ -65,6 +65,7 @@ plugins=(
   heroku
   npm
   emoji
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -95,9 +96,10 @@ fi
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="vim ~/.zshrc"
+alias zshconfig="nvim ~/.zshrc"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias emulator="/home/vinod/Android/Sdk/tools/emulator"
+alias v="nvim"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 #Flutter Path
@@ -110,3 +112,14 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 
 #lightline status bar has no color hence adding term color
 export TERM=xterm-256color
+
+#The minimal, blazing-fast, and infinitely customizable prompt for any shell!
+eval "$(starship init zsh)"
+
+# NVM configuration
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# svelte error too many file open, so setting ulimit
+ulimit -n 10240
