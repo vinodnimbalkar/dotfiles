@@ -8,21 +8,25 @@
 
                     This repository contains personal dotfiles of Vinod Nimbalkar.
 ```
+
 # dotfiles
 
 ## Used Applications
+
 - **Distro:** Ubuntu 20.04 LTS
-- **Window Manager:** Qtile 
-- **Shell:** zsh (+oh\_my\_zsh)
-- **Terminal:** Alacritty
-- **Text Editor:** Neovim/Vim | VS Code
+- **Window Manager:** Qtile
+- **Shell:** zsh (+oh_my_zsh)
+- **Terminal:** Kitty
+- **Text Editor:** Nvim | VS Code
 - **Menus:** Dmenu
-- **File Manager:** Vifm
+- **File Manager:** Ranger
 - **Audio Player:** cmus
 - **System Monitoring Dashboard:** htop
 - **compositor:** Compton
+- **screensaver:** Nitrogen
 
 ## Wallpaper
+
 I got them from a collection of [Derek Taylor](https://gitlab.com/dwt1/wallpapers),
 
 ## Clone these dotfiles into a new computer
