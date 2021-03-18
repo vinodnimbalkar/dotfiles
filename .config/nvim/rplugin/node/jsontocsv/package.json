@@ -1,0 +1,17 @@
+{
+  "name": "jsontocsv",
+  "version": "1.0.0",
+  "description": "A vim plugin which convert json to csv format",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vim-json",
+    "vim-csv",
+    "json",
+    "csv"
+  ],
+  "author": "Vinod Nimbalkar",
+  "license": "MIT"
+}

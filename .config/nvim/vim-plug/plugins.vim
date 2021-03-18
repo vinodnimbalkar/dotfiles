@@ -33,5 +33,10 @@ Plug 'airblade/vim-gitgutter'                       " A Vim plugin which shows g
 Plug 'mg979/vim-visual-multi', {'branch': 'master'} " Multiple cursors plugin for vim/neovim
 Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && npm install'} "markdown preview plugin for (neo)vim
 Plug 'kaicataldo/material.vim', { 'branch': 'main' } "A port of the Material color scheme for Vim/Neovim
+Plug 'sonph/onehalf', { 'rtp': 'vim' }              " Clean, vibrant and pleasing color schemes for Vim
+Plug 'godlygeek/tabular'                            " Vim script for text filtering and alignment
+Plug 'plasticboy/vim-markdown'                      " Markdown Vim Mode
+Plug 'sainnhe/sonokai'                              " High Contrast & Vivid Color Scheme based on Monokai Pro
+Plug 'glepnir/oceanic-material'                     " Oceanic Material Colorscheme on Vim/NeoVim
 
 call plug#end()

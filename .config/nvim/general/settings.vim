@@ -35,4 +35,4 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 " hi NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 
 
-
+let NERDTreeShowHidden=1

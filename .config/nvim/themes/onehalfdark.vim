@@ -1,13 +1,9 @@
-if !has('gui_running')
-  set t_Co=256
-endif
-
+set t_Co=256
 " Colorscheme
 set background=dark
-colorscheme palenight
+colorscheme onehalfdark
 
-" Italics for my favorite color scheme
-let g:palenight_terminal_italics=1
+let g:airline_theme='onehalfdark'
 
 if (has("nvim"))
   "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
