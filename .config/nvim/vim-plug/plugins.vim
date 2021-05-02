@@ -39,5 +39,6 @@ Plug 'plasticboy/vim-markdown'                      " Markdown Vim Mode
 Plug 'sainnhe/sonokai'                              " High Contrast & Vivid Color Scheme based on Monokai Pro
 Plug 'glepnir/oceanic-material'                     " Oceanic Material Colorscheme on Vim/NeoVim
 Plug 'psliwka/vim-smoothie'                         " Smooth scrolling for Vim done rightcup_with_straw
+Plug 'honza/vim-snippets'                           " vim-snipmate default snippets
 
 call plug#end()
