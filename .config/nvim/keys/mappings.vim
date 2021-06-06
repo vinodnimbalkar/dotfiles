@@ -3,7 +3,10 @@ nmap <leader>, :e ~/.config/nvim/init.vim<CR>
 
 " NERDTree Settings
 nnoremap <C-t> :NERDTreeToggle<CR>
+" Exit Vim if NERDTree is the only window left.
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI=1
 
 " Enforcing Purity for myself to not use arrow keys
 noremap <Up>    <Nop>

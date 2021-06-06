@@ -15,7 +15,6 @@ Plug 'tpope/vim-fugitive'                           " Git wrapper
 Plug 'tpope/vim-commentary'                         " Comment stuff out
 Plug 'leafgarland/typescript-vim'                   " Typescript syntax files for Vim
 Plug 'sheerun/vim-polyglot'                         " Mega language support pack
-Plug 'mbbill/undotree'                              " The undo history visualizer for VIM
 Plug 'evanleck/vim-svelte'                          " Vim syntax highlighting and indentation for Svelte 3 components.
 Plug 'vim-airline/vim-airline'                      " Awesome status bar
 Plug 'vim-airline/vim-airline-themes'               " A collection of themes for vim-airline

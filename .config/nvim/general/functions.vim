@@ -20,3 +20,5 @@ function! SetCursorPosition()
   endif
 endfunction
 
+" triggered when a buffer is read (BufRead), matching all files (*) and executes the zR (opens all folds) command in normal mode.
+autocmd BufRead * normal zR

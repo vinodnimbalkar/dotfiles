@@ -22,6 +22,7 @@ set noshowmode                  " Hide mode (lightline shows mode)
 set scrolloff=5                 " Minimum space on bottom/top of window
 set nobackup                    " Backup file is immediately deleted
 set incsearch                   " Increamental search
+set inccommand=nosplit          " Live substitution
 set termguicolors               " Terminal gui color
 set foldmethod=syntax           " fold function in program
 
@@ -34,5 +35,9 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 " hi Normal ctermbg=NONE guibg=NONE
 " hi NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 
-
-let NERDTreeShowHidden=1
+" gitgutter configuration
+let g:gitgutter_sign_added = '▎'
+let g:gitgutter_sign_modified = '▎'
+let g:gitgutter_sign_removed = '▏'
+let g:gitgutter_sign_removed_first_line = '▔'
+let g:gitgutter_sign_modified_removed = '▋'
