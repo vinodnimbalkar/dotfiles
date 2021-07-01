@@ -69,5 +69,8 @@ cmd([[autocmd BufRead * normal zR]])
 
 -- lightbulb
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+
+-- Highlight on yank
+vim.cmd [[autocmd TextYankPost * lua vim.highlight.on_yank {on_visual = false}]]
 return M
 

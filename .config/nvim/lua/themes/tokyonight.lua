@@ -1,4 +1,3 @@
-
 local g = vim.g
 
 vim.g.tokyonight_style = "night"

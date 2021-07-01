@@ -1,32 +1,45 @@
+-- General settings
+require "settings"
+require "mappings"
+
 -- load all plugins
 require "plugins"
-require "settings"
-require "floaterm"
 
+-- UI
+require "floaterm"
 require "top-bufferline"
 require "statusline"
 require "blankline"
-
 require("neoscroll").setup() -- smooth scroll
 
--- lsp stuff
+-- LSP stuff
 require "lsp-config"
 require "compe-config"
 require "lsp/python-lsp"
+require("lspkind").init()
+require "lspsaga".init_lsp_saga()
 
---theme
+-- ColorsScheme
 require "themes/material"
+require "symbol-outline"
 
+--Color
+require "colorizer".setup()
+
+-- Things
 require "treesitter-nvim"
-require "mappings"
-
 require "telescope-nvim"
 require "nvimTree" -- file tree stuff
+-- require "presence-nvim" --discord presence
 
 -- git signs , lsp symbols etc
 require "gitsigns-nvim"
 require("nvim-autopairs").setup()
-require("lspkind").init()
+require("nvim_comment").setup()
+
+-- Utils
+require "dashboard"
+require "whichkey"
 
 -- hide line numbers , statusline in specific buffers!
 vim.api.nvim_exec(
@@ -38,6 +51,3 @@ vim.api.nvim_exec(
     false
 )
 
-require "whichkey"
-require "dashboard"
-require("nvim_comment").setup()
