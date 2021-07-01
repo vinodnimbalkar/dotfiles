@@ -123,3 +123,18 @@ export NVM_DIR="$HOME/.nvm"
 
 # svelte error too many file open, so setting ulimit
 ulimit -n 10240
+
+
+# Pyenv Configuration
+
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init --path)"
+
+# eval "$(pyenv init -)"
+# pyenv shell 3.7.5
+# export PATH="$(pyenv root)/shims:$PATH"
+
+# Kitty Terminal
+alias icat="kitty +kitten icat"
+alias d="kitty +kitten diff"
