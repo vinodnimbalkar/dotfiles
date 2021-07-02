@@ -15,9 +15,9 @@ require("neoscroll").setup() -- smooth scroll
 -- LSP stuff
 require "lsp-config"
 require "compe-config"
-require "lsp/python-lsp"
 require("lspkind").init()
 require "lspsaga".init_lsp_saga()
+require "lsp-install"
 
 -- ColorsScheme
 require "themes/material"
