@@ -5,6 +5,7 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/vinodnimbalkar/dotfiles/master/.config/images/nvim/nvim.png">
 </div>
+
 ## Features
 
 - Lovely, informative start screen
