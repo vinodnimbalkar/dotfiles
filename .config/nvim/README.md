@@ -2,6 +2,9 @@
 
 > If you are want neovim stable version of 0.4.4, then it's better to see this [commit](https://github.com/vinodnimbalkar/dotfiles/tree/06b03155e0063b0104949512a6888aefca4f2d25/.config/nvim).
 
+<div align="center">
+  <img src="https://raw.githubusercontent.com/vinodnimbalkar/dotfiles/master/.config/images/nvim/nvim.png">
+</div>
 ## Features
 
 - Lovely, informative start screen
@@ -30,30 +33,30 @@
 .
 ├── init.lua
 ├── install.sh
-└── lua
-    ├── blankline.lua
-    ├── compe-config.lua
-    ├── dashboard.lua
-    ├── floaterm.lua
-    ├── gitsigns-nvim.lua
-    ├── lsp
-    │   ├── python-lsp.lua
-    │   └── typescript-lsp.lua
-    ├── lsp-config.lua
-    ├── mappings.lua
-    ├── nvimTree.lua
-    ├── plugins.lua
-    ├── settings.lua
-    ├── statusline.lua
-    ├── telescope-nvim.lua
-    ├── themes
-    │   ├── material.lua
-    │   └── tokyonight.lua
-    ├── top-bufferline.lua
-    ├── treesitter-nvim.lua
-    └── whichkey.lua
+├── lua
+│   ├── blankline.lua
+│   ├── compe-config.lua
+│   ├── dashboard.lua
+│   ├── floaterm.lua
+│   ├── gitsigns-nvim.lua
+│   ├── lsp-config.lua
+│   ├── lsp-install.lua
+│   ├── mappings.lua
+│   ├── nvimTree.lua
+│   ├── plugins.lua
+│   ├── settings.lua
+│   ├── statusline.lua
+│   ├── symbol-outline.lua
+│   ├── telescope-nvim.lua
+│   ├── themes
+│   │   ├── material.lua
+│   │   └── tokyonight.lua
+│   ├── top-bufferline.lua
+│   ├── treesitter-nvim.lua
+│   └── whichkey.lua
+└── README.md
 
-3 directories, 21 files
+2 directories, 22 files
 ```
 
 - The init.lua heart of neovim configuartion.
