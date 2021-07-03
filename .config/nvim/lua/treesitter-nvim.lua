@@ -8,10 +8,14 @@ ts_config.setup {
         "bash",
         "lua",
         "json",
-        "python"
+        "python",
+        "tsx"
     },
     highlight = {
         enable = true,
         use_languagetree = true
+    },
+    indent = {
+      enable = true
     }
 }

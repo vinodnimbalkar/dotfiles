@@ -1,5 +1,7 @@
+local icons = require "nvim-nonicons"
+
 require("telescope").setup {
-    defaults = {
+    layout_config = {
         vimgrep_arguments = {
             "rg",
             "--color=never",
@@ -10,7 +12,7 @@ require("telescope").setup {
             "--smart-case"
         },
         prompt_position = "bottom",
-        prompt_prefix = " ",
+        prompt_prefix = "  " .. icons.get("telescope") .. "  ",
         selection_caret = " ",
         entry_prefix = "  ",
         initial_mode = "insert",

@@ -11,6 +11,7 @@ require "top-bufferline"
 require "statusline"
 require "blankline"
 require("neoscroll").setup() -- smooth scroll
+require "nvim-nonicons".get("file")
 
 -- LSP stuff
 require "lsp-config"

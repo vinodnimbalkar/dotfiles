@@ -1,17 +1,14 @@
-" Automatically generated packer.nvim plugin loader code
+-- Automatically generated packer.nvim plugin loader code
 
-if !has('nvim-0.5')
-  echohl WarningMsg
-  echom "Invalid Neovim version for packer.nvim!"
-  echohl None
-  finish
-endif
+if vim.api.nvim_call_function('has', {'nvim-0.5'}) ~= 1 then
+  vim.api.nvim_command('echohl WarningMsg | echom "Invalid Neovim version for packer.nvim! | echohl None"')
+  return
+end
 
-packadd packer.nvim
+vim.api.nvim_command('packadd packer.nvim')
 
-try
+local no_errors = pcall(function()
 
-lua << END
   local time
   local profile_info
   local should_profile = false
@@ -100,6 +97,14 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
   },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
+  },
+  ["markdown-preview.nvim"] = {
+    loaded = true,
+    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim"
+  },
   ["material.nvim"] = {
     loaded = true,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/start/material.nvim"
@@ -120,6 +125,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
   },
+  ["nvim-colorizer.lua"] = {
+    loaded = true,
+    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+  },
   ["nvim-comment"] = {
     loaded = true,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/start/nvim-comment"
@@ -139,6 +148,10 @@ _G.packer_plugins = {
   ["nvim-lspinstall"] = {
     loaded = true,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
+  },
+  ["nvim-nonicons"] = {
+    loaded = true,
+    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/nvim-nonicons"
   },
   ["nvim-palenight.lua"] = {
     loaded = true,
@@ -168,9 +181,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
+  ["presence.nvim"] = {
+    loaded = true,
+    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/presence.nvim"
+  },
   ["startuptime.vim"] = {
     loaded = true,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/start/startuptime.vim"
+  },
+  ["symbols-outline.nvim"] = {
+    loaded = true,
+    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim"
   },
   ["telescope-media-files.nvim"] = {
     loaded = true,
@@ -213,11 +234,8 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 if should_profile then save_profiles() end
 
-END
+end)
 
-catch
-  echohl ErrorMsg
-  echom "Error in packer_compiled: " .. v:exception
-  echom "Please check your config for correctness"
-  echohl None
-endtry
+if not no_errors then
+  vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: ".v:exception | echom "Please check your config for correctness" | echohl None')
+end

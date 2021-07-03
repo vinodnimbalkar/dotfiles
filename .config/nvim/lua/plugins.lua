@@ -27,6 +27,8 @@ return packer.startup(
         use "glepnir/galaxyline.nvim"
         use "windwp/nvim-autopairs"             -- autopairs for neovim written by lua
         use "alvan/vim-closetag"                -- Auto close (X)HTML tags
+        use {"iamcco/markdown-preview.nvim",
+              run="cd app & npm install"}       -- markdown preview plugin for (neo)vim
 
         -- Comment
         use "terrortylor/nvim-comment"          -- A comment toggler for Neovim, written in Lua
@@ -37,6 +39,7 @@ return packer.startup(
 
         -- file managing , picker etc
         use "kyazdani42/nvim-tree.lua"          -- A file explorer tree for neovim written in lua
+        use "yamatsum/nvim-nonicons"            -- Icon set using nonicons for neovim plugins and settings
         use "kyazdani42/nvim-web-devicons"      -- lua `fork` of vim-web-devicons for neovim
         use "nvim-lua/plenary.nvim"
         use "nvim-lua/popup.nvim"               -- An implementation of the Popup API from vim in Neovim
@@ -54,6 +57,6 @@ return packer.startup(
         use "tpope/vim-surround"                -- surround.vim: quoting/parenthesizing made simple
         use "kosayoda/nvim-lightbulb"           -- VSCode bulb for neovim's built-in LSP.
         use "andweeb/presence.nvim"             -- Discord Rich Presence for Neovim
-        use {"lukas-reineke/indent-blankline.nvim", branch = "lua"} --Indent guides for Neovim
+        use "lukas-reineke/indent-blankline.nvim" --Indent guides for Neovim
     end
 )

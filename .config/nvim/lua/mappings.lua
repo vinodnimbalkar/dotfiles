@@ -50,3 +50,5 @@ vim.g.VM_maps = {}
 vim.g.VM_maps['Find Under']         = '<C-d>'           -- replace C-n
 vim.g.VM_maps['Find Subword Under'] = '<C-d>'           -- replace visual C-n
 
+-- Remove ~ [Tidle]
+-- let &fcs='eob: '
