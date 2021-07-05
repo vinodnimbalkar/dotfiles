@@ -13,7 +13,6 @@ local function opt(scope, key, value)
 end
 
 g.mapleader = " "
-g.auto_save = 0
 
 cmd "syntax on"
 
