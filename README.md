@@ -17,17 +17,13 @@
 - **Window Manager:** Qtile
 - **Shell:** zsh (+oh_my_zsh)
 - **Terminal:** Kitty
-- **Text Editor:** Nvim | VS Code
-- **Menus:** Dmenu
+- **Text Editor:** [Nvim](https://github.com/vinodnimbalkar/dotfiles/tree/master/.config/nvim)
+- **Menus:** Rofi
 - **File Manager:** Ranger
-- **Audio Player:** cmus
+- **Video Player:** MPV
 - **System Monitoring Dashboard:** htop
 - **compositor:** Compton
 - **screensaver:** Nitrogen
-
-## Wallpaper
-
-I got them from a collection of [Derek Taylor](https://gitlab.com/dwt1/wallpapers),
 
 ## Clone these dotfiles into a new computer
 
