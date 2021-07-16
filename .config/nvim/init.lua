@@ -10,7 +10,6 @@ require "floaterm"
 require "top-bufferline"
 require "statusline"
 require "blankline"
-require("neoscroll").setup() -- smooth scroll
 require "nvim-nonicons".get("file")
 
 -- LSP stuff
@@ -28,19 +27,15 @@ require "symbol-outline"
 require "colorizer".setup()
 
 -- Things
-require "treesitter-nvim"
 require "telescope-nvim"
-require "nvimTree" -- file tree stuff
 -- require "presence-nvim" --discord presence
 
 -- git signs , lsp symbols etc
-require "gitsigns-nvim"
 require("nvim-autopairs").setup()
 require("nvim_comment").setup()
 
 -- Utils
 require "dashboard"
-require "whichkey"
 
 -- hide line numbers , statusline in specific buffers!
 vim.api.nvim_exec(

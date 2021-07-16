@@ -52,3 +52,6 @@ vim.g.VM_maps['Find Subword Under'] = '<C-d>'           -- replace visual C-n
 
 -- Remove ~ [Tidle]
 -- let &fcs='eob: '
+
+-- Mappings for nvimtree
+map("n", "<C-n>", ":NvimTreeToggle<CR>", {noremap=true, silent=true})

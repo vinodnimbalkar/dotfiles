@@ -1,3 +1,4 @@
+vim.cmd [[packadd packer.nvim]]
 local packer = require("packer")
 local use = packer.use
 
@@ -14,7 +15,13 @@ return packer.startup(
         use "norcalli/nvim-colorizer.lua"       -- The fastest Neovim colorizer.
 
         -- lang stuff
-        use "nvim-treesitter/nvim-treesitter"   -- Nvim Treesitter configurations and abstraction layer
+        use{
+            "nvim-treesitter/nvim-treesitter",
+            event = "BufRead",
+            config = function()
+                require("treesitter-nvim").config()
+            end
+        }                                       -- Nvim Treesitter configurations and abstraction layer
         use "neovim/nvim-lspconfig"             -- Quickstart configurations for the Nvim LSP client
         use "hrsh7th/nvim-compe"                -- Auto completion plugin for nvim that written in Lua.
         use "onsails/lspkind-nvim"              -- vscode-like pictograms for neovim lsp completion items
@@ -22,7 +29,13 @@ return packer.startup(
         use "kabouzeid/nvim-lspinstall"         -- Provides the missing :LspInstall for nvim-lspconfig
         use "glepnir/lspsaga.nvim"              -- Neovim lsp plugin
 
-        use "lewis6991/gitsigns.nvim"           -- Super fast git decorations implemented purely in lua/teal.
+        use {
+          "lewis6991/gitsigns.nvim",
+          event = "BufRead",
+          config = function()
+            require("gitsigns-nvim").config()
+          end
+        }                                       -- Super fast git decorations implemented purely in lua/teal.
         use "akinsho/nvim-bufferline.lua"       -- A snazzy bufferline for Neovim
         use "glepnir/galaxyline.nvim"
         use "windwp/nvim-autopairs"             -- autopairs for neovim written by lua
@@ -38,7 +51,13 @@ return packer.startup(
         use "rafamadriz/friendly-snippets"      -- Set of preconfigured snippets for different languages.
 
         -- file managing , picker etc
-        use "kyazdani42/nvim-tree.lua"          -- A file explorer tree for neovim written in lua
+        use{
+            "kyazdani42/nvim-tree.lua",
+            cmd = "NvimTreeToggle",
+            config = function()
+              require("nvimTree").config()
+            end
+        }                                       -- A file explorer tree for neovim written in lua
         use "yamatsum/nvim-nonicons"            -- Icon set using nonicons for neovim plugins and settings
         use "kyazdani42/nvim-web-devicons"      -- lua `fork` of vim-web-devicons for neovim
         use "nvim-lua/plenary.nvim"
@@ -50,13 +69,30 @@ return packer.startup(
         use "glepnir/dashboard-nvim"
         use "tweekmonster/startuptime.vim"
         use "907th/vim-auto-save"               -- Automatically save changes to disk in Vim
-        use "karb94/neoscroll.nvim"             -- `Smooth scrolling neovim plugin written in lua`
+        use {
+            "karb94/neoscroll.nvim",
+            event = "WinScrolled",
+            config = function()
+                require("neoscroll").setup()
+            end
+        }                                       -- `Smooth scrolling neovim plugin written in lua`
         use "junegunn/goyo.vim"                 -- Distraction-free writing in Vim
-        use "folke/which-key.nvim"              -- Vim plugin that shows keybindings in popup
+        use {
+            "folke/which-key.nvim",
+            config = function()
+              require("whichkey").config()
+            end
+        }                                       -- Vim plugin that shows keybindings in popup
         use "voldikss/vim-floaterm"             -- Terminal manager for (neo)vim
         use "tpope/vim-surround"                -- surround.vim: quoting/parenthesizing made simple
         use "kosayoda/nvim-lightbulb"           -- VSCode bulb for neovim's built-in LSP.
         use "andweeb/presence.nvim"             -- Discord Rich Presence for Neovim
         use "lukas-reineke/indent-blankline.nvim" --Indent guides for Neovim
-    end
+        use "chrisbra/csv.vim"                  -- A Filetype plugin for csv files
+    end,
+    {
+      display = {
+        border = {"┌", "─", "┐", "│", "┘", "─", "└", "│"}
+      }
+    }
 )

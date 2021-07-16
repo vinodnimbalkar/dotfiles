@@ -29,11 +29,3 @@ vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "", numhl = "LspD
 vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "", numhl = "LspDiagnosticsDefaultWarning"})
 vim.fn.sign_define("LspDiagnosticsSignHint", {text = "", numhl = "LspDiagnosticsDefaultHint"})
 
--- Auto-format
-vim.cmd([[
-  augroup fmt
-    autocmd!
-      au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
-    augroup END
-  ]])
-

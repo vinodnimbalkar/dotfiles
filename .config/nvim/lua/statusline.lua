@@ -9,6 +9,8 @@ local colors = {
   green = "#00FF00",
 }
 
+gl.short_line_list = {'NvimTree'}
+
 local checkwidth = function()
     local squeeze_width = vim.fn.winwidth(0) / 2
     if squeeze_width > 30 then
@@ -27,6 +29,9 @@ gls.left[1] = {
         V = {color = "Conditional", icon = icons.get("vim-visual-mode")},
         [""] = {color = "Conditional", icon = icons.get("vim-visual-mode")},
         c = {color = "Keyword", icon = icons.get("vim-command-mode")},
+        ['!'] = {color = "Keyword", icon = icons.get("vim-command-mode")},
+        R = {color = "Keyword", icon = icons.get("vim-replace-mode")},
+        r = {color = "Keyword", icon = icons.get("vim-replace-mode")},
       }
       vim.api.nvim_command("hi link GalaxyViMode " .. mode[vim.fn.mode()].color)
       if mode[vim.fn.mode()].icon ~= nil then
