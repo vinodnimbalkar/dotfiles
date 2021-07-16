@@ -1,29 +1,3 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
 import os
 import re
 import socket
@@ -33,71 +7,53 @@ from typing import List  # noqa: F401
 from libqtile import bar, layout, widget, hook
 from libqtile.config import KeyChord, Click, Drag, Group, Key, Screen
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
 
 mod = "mod4"
-terminal = guess_terminal()
+terminal = "kitty"
 
 keys = [
-    # Move between windows
+    # Move FOCUS between windows
     Key([mod], "k", lazy.layout.down(), desc="Move focus down in stack pane"),
     Key([mod], "j", lazy.layout.up(), desc="Move focus up in stack pane"),
     Key([mod], "h", lazy.layout.left(), desc="Move focus left in stack pane"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus left in stack pane"),
+
     # shufle windows
     Key([mod, "control"], "j", lazy.layout.shuffle_down()),
     Key([mod, "control"], "k", lazy.layout.shuffle_up()),
     Key([mod, "control"], "h", lazy.layout.shuffle_left()),
     Key([mod, "control"], "l", lazy.layout.shuffle_right()),
+
     # resize windows
     Key([mod, "shift"], "h", lazy.layout.shrink()),
     Key([mod, "shift"], "l", lazy.layout.grow()),
     Key([mod, "shift"], "m", lazy.layout.maximize()),
     Key([mod, "shift"], "n", lazy.layout.normalize()),
+
     # layout modifires
     Key([mod, "shift"], "t", lazy.window.toggle_floating()),
     Key([mod, "shift"], "f", lazy.window.toggle_fullscreen()),
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+
     # Switch window focus to other pane(s) of stack
-    Key(
-        [mod],
-        "space",
-        lazy.layout.flip(),
-        desc="Switch window focus to other pane(s) of stack",
-    ),
+    Key([mod], "space", lazy.layout.flip()),
+
     # Swap panes of split stack
-    Key(
-        [mod, "shift"], "space", lazy.layout.rotate(), desc="Swap panes of split stack"
-    ),
+    Key([mod, "shift"], "space", lazy.layout.rotate()),
+
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
     # multiple stack panes
-    Key(
-        [mod, "control"],
-        "Return",
-        lazy.layout.toggle_split(),
-        desc="Toggle between split and unsplit sides of stack",
-    ),
+    Key([mod, "control"], "Return", lazy.layout.toggle_split()),
+
+    # General Setting
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    # Toggle between different layouts as defined below
-    Key(
-        [mod, "shift"],
-        "Return",
-        lazy.spawn("dmenu_run -p 'Run: '"),
-        desc="Dmenu Run Launcher",
-    ),
-    # Dmenu scripts launched with ALT + CTRL + KEY
-    Key(
-        ["mod1", "control"],
-        "e",
-        lazy.spawn("bash /home/vinod/.dmenu/dmenu-edit-configs.sh"),
-        desc="Dmenu script for editing config files",
-    ),
+    Key([mod, "shift"], "Return", lazy.spawn("rofi -modi run,drun -show run")),
     Key([mod], "s", lazy.spawn("gnome-control-center"), desc="Open Gnome Setting"),
-    Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown qtile"),
+    Key([mod, "control"], "c", lazy.window.kill(), desc="Kill focused window"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
     # Brightness
@@ -106,16 +62,12 @@ keys = [
 
     # Volume
     Key([], "XF86AudioMute", lazy.spawn("pulsemixer --toggle-mute")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn(
-        "pulsemixer --change-volume -5")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn(
-        "pulsemixer --change-volume +5")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("pulsemixer --change-volume -5")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("pulsemixer --change-volume +5")),
 
     # My applications launched with SUPER + ALT + KEY
     Key([mod, "mod1"], "b", lazy.spawn("google-chrome")),
-    Key([mod, "mod1"], "n", lazy.spawn(terminal + " -e newsboat")),
-    Key([mod, "mod1"], "r", lazy.spawn(terminal + " -e rtv")),
-    Key([mod, "mod1"], "c", lazy.spawn(terminal + " -e cmus"), desc="cmus"),
+    Key([mod, "mod1"], "w", lazy.spawn("wallchanger")),
 ]
 
 group_names = [
@@ -146,49 +98,35 @@ layout_theme = {
     "border_normal": "1D2330",
 }
 
-
 layouts = [
     layout.MonadTall(**layout_theme),
     layout.Max(**layout_theme),
     layout.Stack(num_stacks=2),
     layout.Floating(**layout_theme)
-    # Try more layouts by unleashing below layouts.
-    # layout.Bsp(),
-    # layout.Columns(),
-    # layout.Matrix(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
 ]
 
-colors = [
-    ["#292d3e", "#292d3e"],  # panel background
-    ["#434758", "#434758"],  # background for current screen tab
-    ["#ffffff", "#ffffff"],  # font color for group names
-    ["#ff5555", "#ff5555"],  # border line color for current tab
-    ["#8d62a9", "#8d62a9"],  # border line color for other tab and odd widgets
-    ["#668bd7", "#668bd7"],  # color for the even widgets
-    ["#e1acff", "#e1acff"],
-]
-# bar color
-bar_colors = [
-    "#282a36",  # black
-    "#ff5555",  # red
-    "#5af78e",  # green
-    "#f1fa8c",  # yellow
-    "#57c7ff",  # blue
-    "#ff6ac1",  # magenta
-    "#8be9fd",  # cyan
-    "#f1f1f0",  # white
-]
+# Pywal colors
+colors = []
+cache = '/home/vinod/.cache/wal/colors'
+
+
+def load_colors(cache):
+    with open(cache, 'r') as file:
+        for _ in range(8):
+            colors.append(file.readline().strip())
+    colors.append('#ffffff')
+    lazy.reload()
+
+
+load_colors(cache)
+
+# Bar Colors
+bar_colors = colors
 
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
 ##### DEFAULT WIDGET SETTINGS #####
-widget_defaults = dict(font="sans", fontsize=12,
+widget_defaults = dict(font="JetBrains Mono", fontsize=12,
                        padding=2, background=colors[2])
 extension_defaults = widget_defaults.copy()
 
@@ -200,7 +138,7 @@ def init_widgets_list():
         widget.Image(
             filename="~/.config/qtile/icons/python.png",
             mouse_callbacks={
-                "Button1": lambda qtile: qtile.cmd_spawn("dmenu_run")},
+                "Button1": lambda qtile: qtile.cmd_spawn("rofi -show run")},
         ),
         widget.GroupBox(
             font="Ubuntu Bold",
@@ -233,23 +171,6 @@ def init_widgets_list():
                    foreground=colors[2], background=colors[0]),
         widget.WindowName(
             foreground=colors[6], background=colors[0], padding=0),
-        widget.Image(
-            filename="~/.config/qtile/icons/cpu.png",
-            background=bar_colors[5],
-            margin=2,
-            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(
-                terminal + " -e htop")},
-        ),
-        widget.CPU(
-            format="CPU {freq_current}GHz {load_percent}%",
-            update_interval=5,
-            foreground=bar_colors[0],
-            background=bar_colors[5],
-            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(
-                terminal + " -e htop")},
-        ),
-        widget.ThermalSensor(
-            background=bar_colors[5], foreground=bar_colors[0], update_interval=5,),
         widget.Image(
             filename="~/.config/qtile/icons/memory.png",
             background=bar_colors[3],
