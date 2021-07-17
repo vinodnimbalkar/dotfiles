@@ -11,6 +11,76 @@ from libqtile.lazy import lazy
 mod = "mod4"
 terminal = "kitty"
 
+dracula = [
+    "#282a36",  # 0  Background
+    "#44475a",  # 1  current line/lighter_black
+    "#f8f8f2",  # 2  foreground
+    "#6272a4",  # 3  comment/dark_grey
+    "#8be9fd",  # 4  cyan
+    "#50fa7b",  # 5  green
+    "#ffb86c",  # 6  orange
+    "#ff79c6",  # 7  pink
+    "#bd93f9",  # 8  purple
+    "#ff5555",  # 9  red
+    "#f1fa8c",  # 10 yellow
+]
+
+onedark = [
+    "#282c34",  # 0 background
+    "#3f444a",  # 1 bg-alt
+    "#bbc2cf",  # 2 foreground
+    "#5B6268",  # 3 dark grey / comments
+    "#46d9ff",  # 4 cyan
+    "#98be65",  # 5 green
+    "#da8548",  # 6 orange
+    "#c678dd",  # 7 magenta
+    "#a9a1e1",  # 8 violet
+    "#ff6c6b",  # 9 red
+    "#ecbe7b",  # 10 yellow
+]
+
+palenight = [
+    "#292D3E",  # 0 background
+    "#242837",  # 1 bg-alt
+    "#EEFFFF",  # 2 foreground
+    "#676E95",  # 3 dark grey / comments
+    "#80cbc4",  # 4 cyan
+    "#c3e88d",  # 5 green
+    "#f78c6c",  # 6 orange
+    "#c792ea",  # 7 magenta
+    "#bb80b3",  # 8 violet
+    "#ff5370",  # 9 red
+    "#ffcb6b",  # 10 yellow
+]
+
+gruvbox = [
+    "#282828",  # 0 background
+    "#0d1011",  # 1 bg-alt
+    "#ebdbb2",  # 2 foreground
+    "#928374",  # 3 dark grey / comments
+    "#689d6a",  # 4 cyan
+    "#b8bb26",  # 5 green
+    "#fe8019",  # 6 orange
+    "#cc241d",  # 7 magenta
+    "#d3869b",  # 8 violet
+    "#fb4934",  # 9 red
+    "#fabd2f",  # 10 yellow
+]
+
+nord = [
+    "#2E3440",  # 0  Background
+    "#434C5E",  # 1  current line/lighter_black
+    "#ECEFF4",  # 2  foreground
+    "#434C5E",  # 3  comment/dark_grey
+    "#88C0D0",  # 4  cyan
+    "#A3BE8C",  # 5  green
+    "#D08770",  # 6  orange
+    "#B48EAD",  # 7  magenta
+    "#5D80AE",  # 8  violet
+    "#BF616A",  # 9  red
+    "#EBCB8B",  # 10 yellow
+]
+
 keys = [
     # Move FOCUS between windows
     Key([mod], "k", lazy.layout.down(), desc="Move focus down in stack pane"),
@@ -105,6 +175,7 @@ layouts = [
     layout.Floating(**layout_theme)
 ]
 
+
 # Pywal colors
 colors = []
 cache = '/home/vinod/.cache/wal/colors'
@@ -118,7 +189,8 @@ def load_colors(cache):
     lazy.reload()
 
 
-load_colors(cache)
+# load_colors(cache)
+colors = dracula
 
 # Bar Colors
 bar_colors = colors
@@ -126,9 +198,19 @@ bar_colors = colors
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
 ##### DEFAULT WIDGET SETTINGS #####
-widget_defaults = dict(font="JetBrains Mono", fontsize=12,
-                       padding=2, background=colors[2])
+widget_defaults = dict(
+    font="JetBrains Mono",
+    fontsize=12,
+    padding=2,
+    background=colors[0],
+    foreground=colors[0]
+)
 extension_defaults = widget_defaults.copy()
+custom_separator = widget.TextBox(
+    text='',
+    foreground=colors[3],
+    fontsize=15
+)
 
 
 def init_widgets_list():
@@ -149,8 +231,8 @@ def init_widgets_list():
             padding_x=3,
             borderwidth=3,
             active=colors[2],
-            inactive=colors[2],
-            rounded=False,
+            inactive=colors[3],
+            rounded=True,
             highlight_color=colors[1],
             highlight_method="line",
             this_current_screen_border=colors[3],
@@ -167,94 +249,61 @@ def init_widgets_list():
             foreground=colors[3],
             background=colors[1],
         ),
-        widget.Sep(linewidth=0, padding=40,
-                   foreground=colors[2], background=colors[0]),
         widget.WindowName(
-            foreground=colors[6], background=colors[0], padding=0),
-        widget.Image(
-            filename="~/.config/qtile/icons/memory.png",
-            background=bar_colors[3],
-            margin=1,
-            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(
-                terminal + " -e htop")},
+            max_chars=50,
+            foreground=colors[7],
+            padding=5
         ),
-        widget.Memory(
-            format="Mem {MemUsed}MB ",
-            foreground=bar_colors[0],
-            background=bar_colors[3],
-            update_interval=5,
-            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(
-                terminal + " -e htop")},
+        widget.Clock(
+            format='   %Y-%m-%d %a %H:%M',
+            foreground=colors[2],
         ),
-        widget.Image(
-            filename="~/.config/qtile/icons/wifi.png",
-            background=bar_colors[4],
-            margin=3,
+        custom_separator,
+        widget.Chord(
+            chords_colors={
+                'launch': ("#ff0000", "#ffffff"),
+            },
+            name_transform=lambda name: name.upper(),
         ),
         widget.Wlan(
             interface="wlp2s0",
             format="{essid}",
             disconnected_message="",
-            foreground=bar_colors[0],
-            background=bar_colors[4],
+            foreground=bar_colors[5],
         ),
-        widget.Net(
-            format="{interface}",
-            interface="enp0s20f0u1",
-            foreground=bar_colors[0],
-            background=bar_colors[4],
-        ),
-        widget.Image(
-            filename="~/.config/qtile/icons/battery.png",
-            background=bar_colors[2],
-            margin=1,
-        ),
+        custom_separator,
         widget.Battery(
             charge_char="AC",
             discharge_char="",
             low_foreground=bar_colors[1],
             low_percentage=0.2,
-            format="{char} {percent:2.0%} ({hour:d}:{min:02d})",
+            format=" {char} {percent:2.0%} ({hour:d}:{min:02d})",
             update_interval=30,
-            background=bar_colors[2],
-            foreground=bar_colors[0],
+            foreground=bar_colors[5],
         ),
-        widget.Image(
-            filename="~/.config/qtile/icons/brightness.png",
-            background=bar_colors[3],
-            margin=2,
-        ),
+        custom_separator,
         widget.Backlight(
             backlight_name="intel_backlight",
-            format="{percent:2.0%}",
-            foreground=bar_colors[0],
-            background=bar_colors[3],
+            format=" {percent:2.0%}",
+            foreground=bar_colors[5],
             step=1,
         ),
-        widget.Image(
-            filename="~/.config/qtile/icons/vol.png",
-            background=bar_colors[3],
-            margin=4,
+        custom_separator,
+        widget.Net(
+            format='{down}  {up}',
+            use_bits=True,
+            foreground=colors[5]
         ),
-        widget.Volume(foreground=bar_colors[0], background=bar_colors[3]),
         widget.CurrentLayoutIcon(
             custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
-            foreground=colors[0],
-            background=colors[4],
+            foreground=colors[3],
             padding=0,
             scale=0.7,
         ),
-        widget.CurrentLayout(
-            foreground=colors[2], background=colors[4], padding=5),
-        widget.Image(
-            filename="~/.config/qtile/icons/calendar.png",
-            background=bar_colors[6],
-            margin=4,
+        widget.Systray(
+            foreground=colors[3],
+            padding=5
         ),
-        widget.Clock(
-            foreground=bar_colors[0], background=bar_colors[6], format="%a, %b %d - %H:%M"
-        ),
-        widget.Systray(background=colors[0], padding=5),
     ]
     return widgets_list
 
@@ -272,9 +321,14 @@ def init_widgets_screen2():
 
 def init_screens():
     return [
-        Screen(top=bar.Bar(widgets=init_widgets_screen1(), opacity=1.0, size=20)),
-        Screen(top=bar.Bar(widgets=init_widgets_screen2(), opacity=1.0, size=20)),
-        Screen(top=bar.Bar(widgets=init_widgets_screen1(), opacity=1.0, size=20)),
+        Screen(top=bar.Bar(
+            widgets=init_widgets_screen1(),
+            opacity=1.0,
+            size=27,
+            # margin=[7, 10, 2, 10]
+        )),
+        Screen(top=bar.Bar(widgets=init_widgets_screen2(), opacity=1.0, size=27)),
+        Screen(top=bar.Bar(widgets=init_widgets_screen1(), opacity=1.0, size=27)),
     ]
 
 
@@ -335,6 +389,8 @@ main = None  # WARNING: this is deprecated and will be removed soon
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
+auto_fullscreen = True
+focus_on_window_activation = "smart"
 floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
@@ -354,8 +410,6 @@ floating_layout = layout.Floating(
         {"wmclass": "ssh-askpass"},  # ssh-askpass
     ]
 )
-auto_fullscreen = True
-focus_on_window_activation = "smart"
 
 
 @ hook.subscribe.startup_once
