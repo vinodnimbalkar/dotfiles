@@ -100,7 +100,17 @@ alias zshconfig="nvim ~/.zshrc"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias emulator="/home/vinod/Android/Sdk/tools/emulator"
 alias v="nvim"
+alias tty="tty-clock -C6 -c -t"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Kitty Terminal
+alias icat="kitty +kitten icat"
+alias d="kitty +kitten diff"
+
+# Tmux alias
+alias tn="tmux new -s"
+alias ta="tmux attach -t"
+alias tx="tmux kill-session -t"
 
 #Flutter Path
 export PATH=$PATH:$HOME/Applications/flutter/bin
@@ -135,6 +145,3 @@ ulimit -n 10240
 # pyenv shell 3.7.5
 # export PATH="$(pyenv root)/shims:$PATH"
 
-# Kitty Terminal
-alias icat="kitty +kitten icat"
-alias d="kitty +kitten diff"
