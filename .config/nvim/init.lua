@@ -10,7 +10,6 @@ require "floaterm"
 require "top-bufferline"
 require "statusline"
 require "blankline"
-require "nvim-nonicons".get("file")
 
 -- LSP stuff
 require "lsp-config"

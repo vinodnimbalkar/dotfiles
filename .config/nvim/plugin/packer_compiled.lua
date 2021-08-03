@@ -69,6 +69,10 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["csv.vim"] = {
+    loaded = true,
+    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/csv.vim"
+  },
   ["dashboard-nvim"] = {
     loaded = true,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/start/dashboard-nvim"

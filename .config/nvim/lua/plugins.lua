@@ -58,7 +58,6 @@ return packer.startup(
               require("nvimTree").config()
             end
         }                                       -- A file explorer tree for neovim written in lua
-        use "yamatsum/nvim-nonicons"            -- Icon set using nonicons for neovim plugins and settings
         use "kyazdani42/nvim-web-devicons"      -- lua `fork` of vim-web-devicons for neovim
         use "nvim-lua/plenary.nvim"
         use "nvim-lua/popup.nvim"               -- An implementation of the Popup API from vim in Neovim

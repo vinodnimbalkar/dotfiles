@@ -2,7 +2,6 @@ local M = {}
 
 M.config = function()
   local g = vim.g
-  local icons = require "nvim-nonicons"
   local tree_cb = require "nvim-tree.config".nvim_tree_callback
 
   g.nvim_tree_side = "left"
@@ -27,26 +26,26 @@ M.config = function()
   }
 
   g.nvim_tree_icons = {
-      default = icons.get("file"),
+      default = " ",
       symlink = "",
-      -- git = {
-      --     unstaged = "✗",
-      --     staged = "✓",
-      --     unmerged = "",
-      --     renamed = "➜",
-      --     untracked = "★",
-      --     deleted = "",
-      --     ignored = "◌"
-      -- },
+      git = {
+          unstaged = "✗",
+          staged = "✓",
+          unmerged = "",
+          renamed = "➜",
+          untracked = "★",
+          deleted = "",
+          ignored = "◌"
+      },
       folder = {
-        default = icons.get("file-directory"),
-        open = icons.get("file-directory-outline"),
-        symlink = icons.get("file-directory"),
-        symlink_open = icons.get("file-directory-outline"),
-        empty = icons.get("file-directory-outline"),
-        empty_open = icons.get("file-directory-outline"),
-        arrow_open = icons.get("chevron-down"),
-        arrow_closed = icons.get("chevron-right"),
+        default = " ",
+        open = " ",
+        symlink = " ",
+        symlink_open = " ",
+        empty = " ",
+        empty_open = " ",
+        arrow_open = " ",
+        arrow_closed = " ",
       }
   }
 
