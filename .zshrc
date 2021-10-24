@@ -60,7 +60,6 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  django
   python
   heroku
   npm
@@ -101,6 +100,8 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias emulator="/home/vinod/Android/Sdk/tools/emulator"
 alias v="nvim"
 alias tty="tty-clock -C6 -c -t"
+alias ls="exa --icons"
+alias cat="bat"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Kitty Terminal
@@ -133,15 +134,4 @@ export NVM_DIR="$HOME/.nvm"
 
 # svelte error too many file open, so setting ulimit
 ulimit -n 10240
-
-
-# Pyenv Configuration
-
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init --path)"
-
-# eval "$(pyenv init -)"
-# pyenv shell 3.7.5
-# export PATH="$(pyenv root)/shims:$PATH"
 
