@@ -53,3 +53,6 @@ vim.g.VM_maps['Find Subword Under'] = '<C-d>'           -- replace visual C-n
 
 -- Mappings for nvimtree
 map("n", "<C-n>", ":NvimTreeToggle<CR>", {noremap=true, silent=true})
+
+-- Format with Neoformat
+map("n", "<C-l>", ":Neoformat<CR>", {noremap=true, silent=true})

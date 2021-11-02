@@ -13,10 +13,11 @@ require "blankline"
 
 -- LSP stuff
 require "lsp-config"
-require "compe-config"
+require "cmp-config"
 require("lspkind").init()
 require "lspsaga".init_lsp_saga()
 require "lsp-install"
+require "nvim-dap"
 
 -- ColorsScheme
 require "themes/material"
@@ -27,21 +28,8 @@ require "colorizer".setup()
 
 -- Things
 require "telescope-nvim"
--- require "presence-nvim" --discord presence
 
 -- git signs , lsp symbols etc
 require("nvim-autopairs").setup()
 require("nvim_comment").setup()
 
--- Utils
-require "dashboard"
-
--- hide line numbers , statusline in specific buffers!
-vim.api.nvim_exec(
-    [[
-   au BufEnter term://* setlocal nonumber
-   au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == "NvimTree" | set laststatus=0 | else | set laststatus=2 | endif
-   au BufEnter term://* set laststatus=0
-]],
-    false
-)

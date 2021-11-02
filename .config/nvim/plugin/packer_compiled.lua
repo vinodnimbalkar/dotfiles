@@ -7,7 +7,7 @@ end
 
 vim.api.nvim_command('packadd packer.nvim')
 
-local no_errors = pcall(function()
+local no_errors, error_msg = pcall(function()
 
   local time
   local profile_info
@@ -69,26 +69,39 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  LuaSnip = {
+    loaded = true,
+    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/LuaSnip"
+  },
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/cmp-buffer"
+  },
+  ["cmp-cmdline"] = {
+    loaded = true,
+    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/cmp-cmdline"
+  },
+  ["cmp-nvim-lsp"] = {
+    loaded = true,
+    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/cmp-path"
+  },
   ["csv.vim"] = {
     loaded = true,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/start/csv.vim"
-  },
-  ["dashboard-nvim"] = {
-    loaded = true,
-    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/dashboard-nvim"
   },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/start/friendly-snippets"
   },
-  ["galaxyline.nvim"] = {
-    loaded = true,
-    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
-  },
   ["gitsigns.nvim"] = {
-    config = { "\27LJ\2\2<\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\vconfig\18gitsigns-nvim\frequire\0" },
+    config = { "\27LJ\2\0026\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0" },
     loaded = false,
     needs_bufread = false,
+    only_cond = false,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim"
   },
   ["goyo.vim"] = {
@@ -107,6 +120,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
   },
+  ["lualine.nvim"] = {
+    loaded = true,
+    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+  },
   ["markdown-preview.nvim"] = {
     loaded = true,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim"
@@ -123,6 +140,7 @@ _G.packer_plugins = {
     config = { "\27LJ\2\0027\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14neoscroll\frequire\0" },
     loaded = false,
     needs_bufread = false,
+    only_cond = false,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/opt/neoscroll.nvim"
   },
   ["nvim-autopairs"] = {
@@ -133,6 +151,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
   },
+  ["nvim-cmp"] = {
+    loaded = true,
+    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/nvim-cmp"
+  },
   ["nvim-colorizer.lua"] = {
     loaded = true,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
@@ -141,41 +163,31 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/start/nvim-comment"
   },
-  ["nvim-compe"] = {
+  ["nvim-dap"] = {
     loaded = true,
-    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/nvim-compe"
+    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/nvim-dap"
   },
-  ["nvim-lightbulb"] = {
+  ["nvim-lsp-installer"] = {
     loaded = true,
-    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/nvim-lightbulb"
+    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
-  ["nvim-lspinstall"] = {
-    loaded = true,
-    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
-  },
-  ["nvim-nonicons"] = {
-    loaded = true,
-    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/nvim-nonicons"
-  },
-  ["nvim-palenight.lua"] = {
-    loaded = true,
-    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/nvim-palenight.lua"
-  },
   ["nvim-tree.lua"] = {
     commands = { "NvimTreeToggle" },
-    config = { "\27LJ\2\0027\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\vconfig\rnvimTree\frequire\0" },
+    config = { "\27LJ\2\2;\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\14nvim-tree\frequire\0" },
     loaded = false,
     needs_bufread = false,
+    only_cond = false,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     config = { "\27LJ\2\2>\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\vconfig\20treesitter-nvim\frequire\0" },
     loaded = false,
     needs_bufread = true,
+    only_cond = false,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
@@ -193,10 +205,6 @@ _G.packer_plugins = {
   ["popup.nvim"] = {
     loaded = true,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/start/popup.nvim"
-  },
-  ["presence.nvim"] = {
-    loaded = true,
-    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/presence.nvim"
   },
   ["startuptime.vim"] = {
     loaded = true,
@@ -230,6 +238,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/start/vim-floaterm"
   },
+  ["vim-repeat"] = {
+    loaded = true,
+    path = "/home/vinod/.local/share/nvim/site/pack/packer/start/vim-repeat"
+  },
   ["vim-surround"] = {
     loaded = true,
     path = "/home/vinod/.local/share/nvim/site/pack/packer/start/vim-surround"
@@ -253,7 +265,7 @@ time([[Config for which-key.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-vim.cmd [[command! -nargs=* -range -bang -complete=file NvimTreeToggle lua require("packer.load")({'nvim-tree.lua'}, { cmd = "NvimTreeToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file NvimTreeToggle lua require("packer.load")({'nvim-tree.lua'}, { cmd = "NvimTreeToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]
@@ -269,5 +281,5 @@ if should_profile then save_profiles() end
 end)
 
 if not no_errors then
-  vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: ".v:exception | echom "Please check your config for correctness" | echohl None')
+  vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: '..error_msg..'" | echom "Please check your config for correctness" | echohl None')
 end

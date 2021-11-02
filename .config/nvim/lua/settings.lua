@@ -66,19 +66,35 @@ cmd([[autocmd BufWritePre * :%s/\s\+$//e]])
 -- triggered when a buffer is read (BufRead), matching all files (*) and executes the zR (opens all folds) command in normal mode.
 cmd([[autocmd BufRead * normal zR]])
 
--- lightbulb
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
-
 -- Highlight on yank
 vim.cmd [[autocmd TextYankPost * lua vim.highlight.on_yank {on_visual = false}]]
 
 -- Auto-format
+-- vim.cmd([[
+--   augroup fmt
+--     autocmd!
+--       au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
+--     augroup END
+--   ]])
+
+-- Save last cursor position whenfile reopen
 vim.cmd([[
-  augroup fmt
+augroup vimrc-remember-cursor-position
     autocmd!
-      au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
-    augroup END
-  ]])
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+]])
+
+
+-- hide line numbers , statusline in specific buffers!
+vim.api.nvim_exec(
+    [[
+   au BufEnter term://* setlocal nonumber
+   au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == "NvimTree" | set laststatus=0 | else | set laststatus=2 | endif
+   au BufEnter term://* set laststatus=0
+]],
+    false
+)
 
 return M
 

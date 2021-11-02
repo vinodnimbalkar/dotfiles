@@ -26,5 +26,4 @@ vim.g.material_disable_background = false
 vim.api.nvim_set_keymap('n', '<leader>mm', [[<Cmd>lua require('material.functions').toggle_style()<CR>]], { noremap = true, silent = true })
 
 -- Enable the colorscheme
-require('material').set()
-
+vim.cmd[[colorscheme material]]
