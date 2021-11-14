@@ -42,6 +42,13 @@ return packer.startup(
         }                                       -- Super fast git decorations implemented purely in lua/teal.
         use "akinsho/nvim-bufferline.lua"       -- A snazzy bufferline for Neovim
         use {
+          "folke/trouble.nvim",
+          config = function()
+              require("trouble").setup()
+            end
+        }                                       -- A pretty diagnostics, references, telescope results, quickfix and location list to help you solve all the trouble your code is causing.
+        use "glepnir/dashboard-nvim"            -- vim dashboard
+        use {
           'hoob3rt/lualine.nvim',
           requires = {'kyazdani42/nvim-web-devicons', opt = true}
         }                                       -- statusline plugin written in pure lua & icons
@@ -73,7 +80,6 @@ return packer.startup(
 
         -- misc
         use "tweekmonster/startuptime.vim"
-        use "907th/vim-auto-save"               -- Automatically save changes to disk in Vim
         use {
             "karb94/neoscroll.nvim",
             event = "WinScrolled",
@@ -92,6 +98,5 @@ return packer.startup(
         use "tpope/vim-surround"                -- surround.vim: quoting/parenthesizing made simple
         use "tpope/vim-repeat"                  -- repeat.vim: enable repeating supported plugin maps with "."
         use "lukas-reineke/indent-blankline.nvim" --Indent guides for Neovim
-        use "chrisbra/csv.vim"                  -- A Filetype plugin for csv files
     end
 )

@@ -28,11 +28,14 @@ dap.configurations.javascript = {
   },
 }
 
-vim.fn.sign_define('DapBreakpoint', {text='🟥', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''})
 vim.fn.sign_define('DapBreakpointRejected', {text='🟦', texthl='', linehl='', numhl=''})
-vim.fn.sign_define('DapStopped', {text='⭐️', texthl='', linehl='', numhl=''})
-map('n', '<leader>dh', ':lua require"dap".toggle_breakpoint()<CR>')
-map('n', '<leader>dH', ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
+vim.fn.sign_define('DapStopped', {text='🟢', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapBreakpointCondition', { text = '🟡', texthl = '', linehl = '', numhl = '' })
+vim.fn.sign_define('DapLogPoint', { text = '🔵', texthl = '', linehl = '', numhl = '' })
+
+map('n', '<leader>dt', ':lua require"dap".toggle_breakpoint()<CR>')
+map('n', '<leader>db', ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
 map('n', '<c-k>', ':lua require"dap".step_out()<CR>')
 map('n', '<c-l>', ':lua require"dap".step_into()<CR>')
 map('n', '<c-j>', ':lua require"dap".step_over()<CR>')

@@ -10,6 +10,7 @@ require "floaterm"
 require "top-bufferline"
 require "statusline"
 require "blankline"
+require "dashboard"
 
 -- LSP stuff
 require "lsp-config"
