@@ -58,12 +58,14 @@ return packer.startup(
               run="cd app & npm install"}       -- markdown preview plugin for (neo)vim
 
         -- Comment
-        use "terrortylor/nvim-comment"          -- A comment toggler for Neovim, written in Lua
-
+        use {
+            'numToStr/Comment.nvim',
+            config = function()
+                require('Comment').setup()
+            end
+        }                                       -- Smart and powerful comment plugin for neovim. Supports treesitter, dot repeat, left-right/up-down motions, hooks, and more
         -- snippet support
         use "L3MON4D3/LuaSnip"                  -- Snippet Engine for Neovim written in Lua.
-        use "hrsh7th/vim-vsnip"                 -- Snippet plugin for vim/nvim that supports LSP/VSCode's snippet format.Snippet plugin for vim/nvim that supports LSP/VSCode's snippet format.
-        use "rafamadriz/friendly-snippets"      -- Set of preconfigured snippets for different languages.
 
         -- file managing , picker etc
         use{

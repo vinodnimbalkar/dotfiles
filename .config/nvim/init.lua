@@ -32,5 +32,4 @@ require "telescope-nvim"
 
 -- git signs , lsp symbols etc
 require("nvim-autopairs").setup()
-require("nvim_comment").setup()
 

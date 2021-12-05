@@ -27,7 +27,6 @@ opt("o", "relativenumber", true)               -- Show relative line number
 opt("o", "showcmd", true)                      -- Show current command
 opt("o", "wildmode", "longest:list,full")      -- Autocomplete
 opt("o", "showmatch", true)                    -- highlight matching braces
-opt("o", "hlsearch", true)                     -- Highlight search
 opt("o", "ignorecase", true)                   -- ignore case while searching
 opt("o", "wrap", false)                        -- Don't wrap text
 opt("o", "smartcase", true)                    -- unless uppercase explicitly mentioned
@@ -36,7 +35,6 @@ opt("o", "laststatus", 2)                      -- Always show statusbar
 opt("o", "showmode", false)                    -- Hide mode (lightline shows mode)
 opt("o", "scrolloff", 5)                       -- Minimum space on bottom/top of window
 opt("o", "backup", false)                      -- Backup file is immediately deleted
-opt("o", "incsearch", true)                    -- Increamental search
 opt("o", "inccommand", "nosplit")              -- Live substitution
 opt("o", "termguicolors", true)                -- Terminal gui color
 opt("o", "foldmethod", "syntax")               -- fold function in program
@@ -46,6 +44,7 @@ opt("w", "signcolumn", "yes")                  -- Always show the signcolumn, ot
 opt("b", "undofile", true)                     -- Undo Settings
 opt("w", "foldmethod", "syntax")               -- enable foldmethod on syntax
 opt("o", "background", "dark")                 -- Dark background
+
 
 local M = {}
 

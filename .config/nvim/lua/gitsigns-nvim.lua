@@ -32,6 +32,7 @@ M.config = function()
     watch_index = {
       interval = 1000,
     },
+    current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
     sign_priority = 6,
     status_formatter = nil, -- Use default
   }

@@ -7,7 +7,6 @@
 end
 
 local opt = {}
-
 -- Open neovim config
 map("n", "<leader>,", ":e ~/.config/nvim/init.lua<CR>", opt)
 
@@ -35,18 +34,10 @@ map("n", "<C-l>", "<C-w>l", {noremap=true, silent=true})
 map('v', '<', '<gv', {noremap = true, silent = true})
 map('v', '>', '>gv', {noremap = true, silent = true})
 
--- Copy from cursor to End of line, type :h Y for more info
-map("n", "Y", "y$", {noremap=true, silent=true})
-
 -- Tabbing through buffers
 map("n", "<C-Right>", ":bn<CR>")  -- Next buffer in list
 map("n", "<C-Left>", ":bp<CR>")   -- Previous buffer in list
 map("n", "<C-S-Left>", ":b#<CR>") -- Previous buffer you were in
-
--- Vim-Visual-Multi changing default to Ctrl+d like VSCode
-vim.g.VM_maps = {}
-vim.g.VM_maps['Find Under']         = '<C-d>'           -- replace C-n
-vim.g.VM_maps['Find Subword Under'] = '<C-d>'           -- replace visual C-n
 
 -- Remove ~ [Tidle]
 -- let &fcs='eob: '
@@ -55,7 +46,7 @@ vim.g.VM_maps['Find Subword Under'] = '<C-d>'           -- replace visual C-n
 map("n", "<C-n>", ":NvimTreeToggle<CR>", {noremap=true, silent=true})
 
 -- Format with Neoformat
-map("n", "<C-l>", ":Neoformat<CR>", {noremap=true, silent=true})
+map("n", "<A-f>", ":Neoformat<CR>", {noremap=true, silent=true})
 
 -- Trouble
 map("n", "<leader>xx", "<cmd>Trouble<cr>", {silent = true, noremap = true})

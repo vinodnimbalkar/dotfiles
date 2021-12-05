@@ -11,6 +11,18 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+local function attach()
+  print("attaching")
+  dap.run({
+      type = 'node2',
+      request = 'attach',
+      cwd = vim.fn.getcwd(),
+      sourceMaps = true,
+      protocol = 'inspector',
+      skipFiles = {'<node_internals>/**/*.js'},
+      })
+end
+
 dap.adapters.node2 = {
   type = 'executable',
   command = 'node',
@@ -20,11 +32,18 @@ dap.configurations.javascript = {
   {
     type = 'node2',
     request = 'launch',
-    program = '${workspaceFolder}/${file}',
+    program = '${file}',
     cwd = vim.fn.getcwd(),
     sourceMaps = true,
     protocol = 'inspector',
     console = 'integratedTerminal',
+  },
+  {
+    -- For this to work you need to make sure the node process is started with the `--inspect` flag.
+    name = 'Attach to process',
+    type = 'node2',
+    request = 'attach',
+    processId = require'dap.utils'.pick_process,
   },
 }
 
@@ -36,10 +55,10 @@ vim.fn.sign_define('DapLogPoint', { text = '🔵', texthl = '', linehl = '', num
 
 map('n', '<leader>dt', ':lua require"dap".toggle_breakpoint()<CR>')
 map('n', '<leader>db', ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
-map('n', '<c-k>', ':lua require"dap".step_out()<CR>')
-map('n', '<c-l>', ':lua require"dap".step_into()<CR>')
-map('n', '<c-j>', ':lua require"dap".step_over()<CR>')
-map('n', '<c-h>', ':lua require"dap".continue()<CR>')
+map('n', '<leader>h', ':lua require"dap".step_out()<CR>')
+map('n', '<leader>l', ':lua require"dap".step_into()<CR>')
+map('n', '<leader>j', ':lua require"dap".step_over()<CR>')
+map('n', '<leader>k', ':lua require"dap".continue()<CR>')
 map('n', '<leader>dk', ':lua require"dap".up()<CR>')
 map('n', '<leader>dj', ':lua require"dap".down()<CR>')
 map('n', '<leader>dc', ':lua require"dap".disconnect({ terminateDebuggee = true });require"dap".close()<CR>')
