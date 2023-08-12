@@ -127,8 +127,8 @@ keys = [
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
     # Brightness
-    Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc +5")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec +5")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("light -A 5")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("light -U 5")),
 
     # Volume
     Key([], "XF86AudioMute", lazy.spawn("pulsemixer --toggle-mute")),
@@ -199,7 +199,7 @@ prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
 ##### DEFAULT WIDGET SETTINGS #####
 widget_defaults = dict(
-    font="JetBrains Mono",
+    font="Ubuntu Mono",
     fontsize=12,
     padding=2,
     background=colors[0],

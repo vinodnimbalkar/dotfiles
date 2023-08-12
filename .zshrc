@@ -80,7 +80,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='nvim'
+  export EDITOR='hx'
 fi
 
 # Compilation flags
@@ -97,11 +97,11 @@ fi
 # Example aliases
 alias zshconfig="nvim ~/.zshrc"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias emulator="/home/vinod/Android/Sdk/tools/emulator"
 alias v="nvim"
 alias tty="tty-clock -C6 -c -t"
 alias ls="exa --icons"
 alias cat="bat"
+alias lg="lazygit"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Kitty Terminal
@@ -113,10 +113,8 @@ alias tn="tmux new -s"
 alias ta="tmux attach -t"
 alias tx="tmux kill-session -t"
 
-#Flutter Path
-export PATH=$PATH:$HOME/Applications/flutter/bin
 #increse heap size of node
-export NODE_OPTIONS=--max_old_space_size=4096
+export NODE_OPTIONS="--max_old_space_size=4096"
 #Deno Path
 export DENO_INSTALL="/home/vinod/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
@@ -134,4 +132,16 @@ export NVM_DIR="$HOME/.nvm"
 
 # svelte error too many file open, so setting ulimit
 ulimit -n 10240
+
+
+# pnpm
+export PNPM_HOME="/home/vinod/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
+# DOCKER
+export DOCKER_HOST=unix:///var/run/docker.sock
+## lldb-vscode for helix
+export LLDB_VSCODE="/usr/lib/llvm-10/bin"
+export PATH="$LLDB_VSCODE:$PATH"
+
 
