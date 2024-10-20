@@ -61,7 +61,6 @@ ZSH_THEME="robbyrussell"
 plugins=(
   git
   python
-  heroku
   npm
   emoji
   zsh-autosuggestions
@@ -80,7 +79,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='hx'
+  export EDITOR='nvim'
 fi
 
 # Compilation flags
@@ -102,6 +101,7 @@ alias tty="tty-clock -C6 -c -t"
 alias ls="exa --icons"
 alias cat="bat"
 alias lg="lazygit"
+alias z="zellij"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Kitty Terminal
@@ -145,3 +145,11 @@ export LLDB_VSCODE="/usr/lib/llvm-10/bin"
 export PATH="$LLDB_VSCODE:$PATH"
 
 
+
+# bun completions
+[ -s "/home/vinod/.bun/_bun" ] && source "/home/vinod/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+. "/home/vinod/.deno/env"
