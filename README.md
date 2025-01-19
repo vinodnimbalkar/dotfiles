@@ -13,15 +13,15 @@
 
 ## Used Applications
 
-- **Distro:** Ubuntu 20.04 LTS
+- **Distro:** Ubuntu 24.04 LTS
 - **Window Manager:** Qtile
 - **Shell:** zsh (+oh_my_zsh)
-- **Terminal:** Kitty
+- **Terminal:** Ghostty
 - **Text Editor:** [Nvim](https://github.com/vinodnimbalkar/dotfiles/tree/master/.config/nvim)
 - **Menus:** Rofi
-- **File Manager:** Ranger
+- **File Manager:** Yazi
 - **Video Player:** MPV
-- **System Monitoring Dashboard:** htop
+- **System Monitoring Dashboard:** btop
 - **compositor:** Compton
 - **screensaver:** Nitrogen
 
