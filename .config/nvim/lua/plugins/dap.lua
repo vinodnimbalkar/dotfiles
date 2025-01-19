@@ -16,6 +16,13 @@ return {
         end,
         desc = "Step Over",
       },
+      {
+        "<leader>dT",
+        function()
+          require("dap").set_log_level("TRACE")
+        end,
+        desc = "Trace Log",
+      },
     },
   },
   {
