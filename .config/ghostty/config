@@ -1,0 +1,9 @@
+theme=tokyonight
+font-family = JetBrains Mono
+font-size=11
+font-style-bold = Bold
+fullscreen = true
+gtk-titlebar=false
+window-theme=ghostty
+#window-decoration=false
+#background-opacity = 0.9
